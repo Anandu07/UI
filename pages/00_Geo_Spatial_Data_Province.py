@@ -79,7 +79,7 @@ if st.session_state.click_position is not None:
 
 st.session_state.previous_selected_district = st.session_state.selected_district
 
-mobility_data = pd.read_csv("/Users/anandu.balachandran/Downloads/mobility_data_province.csv")
+mobility_data = pd.read_csv("data/mobility_data_province.csv")
 color_map = {
     'frequent': '#636EFA',
     'not_frequent': '#EF553B',
@@ -169,7 +169,7 @@ with col10:
 
 with col11:
     agg_data_no_trips = province_data.groupby(['sex','revenue']).agg({'no_of_trips': 'mean'}).reset_index()
-    fig_agg_sex_trip_no = px.bar(agg_data_no_trips, x='age_bin', y='no_of_trips', color='sex', barmode='group', color_discrete_map=color_map,
+    fig_agg_sex_trip_no = px.bar(agg_data_no_trips, x='sex', y='no_of_trips', color='sex', barmode='group', color_discrete_map=color_map,
                  title=f'Average number of Trips by Age Group and Gender in {selected_province}')
     st.plotly_chart(fig_agg_sex_trip_no)
 
